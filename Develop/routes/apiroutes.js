@@ -1,7 +1,7 @@
 
 //linking database
 //const { Router } = require("express");
-const Workout = require("../models/workoutmodels");
+const Workout = require("../models/workout");
 const router = require("express").Router();
 
  router.post('/api/workout', (req, res) => {
@@ -10,6 +10,24 @@ const router = require("express").Router();
          res.json(dbWorkout);
      })
  });
+
+ router.get('/api/workout', (req, res) => {
+     Workout.find({})
+     .then(dbWorkout => {
+         res.json(dbWorkout)
+     })
+ });
+
+ router.put('/api/workouts/:id', (req, res) => {
+     db.Workout.findByIdAndUpdate(
+         {_id: req.params.id}, {exercises: req.body}
+     ).then((dbWorkout) => {
+         res.json(dbWorkout);
+
+     }).catch(err => {
+         res.json(err)
+     })
+ })
 
 
 
@@ -46,13 +64,13 @@ const router = require("express").Router();
 //    });
 
 
-//    router.get("/api/workouts/range", (req, res) => {
-//        workout.find({}).then((workout) => {
-//            res.json(workout);
+   router.get("/api/workouts/range", (req, res) => {
+       workout.find({}).then((workout) => {
+           res.json(workout);
 
-//        }).catch( err => {
-//            res.json(err);
-//        })
-//    })
+       }).catch( err => {
+           res.json(err);
+       })
+   })
 
    module.exports = router;
