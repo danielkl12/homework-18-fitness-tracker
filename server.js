@@ -23,8 +23,8 @@ mongoose.connect("mongodb://localhost/workout", {
 //const db = require("./Develop/models")
 
 
-app.use(require("./Develop/routes/apiroutes"));
-app.use(require("./Develop/routes/htmlroutes"));
+app.use(require("./routes/apiroutes"));
+app.use(require("./routes/htmlroutes"));
 
 
 app.listen(PORT, () => {
